@@ -44,7 +44,7 @@ https://github.com/JoyalAJohney/Realtime-Distributed-Chat/assets/31545426/db55bf
   
 * To propagate messages for users within the same room but connected to multiple instances, we utilize Redis (Pub/Sub model). Each instance is subscribed to a particular channel in Redis and gets notified on receiving messages. All messages are stored in Postgres.
   
-* The database can undergo a heavy write load if we receive 100 messages/sec. To avoid this, we use kafka, a message stream designed for high throughput and low latency processing. A consumer (Go instance) will consume messages from kafka in batches and writes them to postgres.
+* The database can undergo a heavy write load if we receive 10k messages/sec. To avoid this, we use kafka, a message stream designed for high throughput and low latency processing. A consumer (Go instance) will consume messages from kafka in batches and writes them to postgres.
   
 * The frontend for application is build using React.js and served in an Nginx container. All the nodes are containarized using Docker and Configured using Docker-Compose. We only expose the Reverse-Proxy (Nginx) to the outside world. Al requests are redirected from there.
   
